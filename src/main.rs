@@ -11,6 +11,7 @@ use rocket_contrib::json::{Json};
 use chashmap::CHashMap;
 use rand::prelude::*;
 use rocket::response::{Redirect};
+use rocket::http::{Status};
 
 struct AppState {
     urls: CHashMap<String, String>
@@ -56,16 +57,16 @@ fn shorten_url(state: State<AppState>, payload: Json<UrlPayload>) -> String {
 }
 
 #[get("/<url>")]
-fn get_short_url(state: State<AppState>, url: String) -> Result<Redirect, String> {
+fn get_url(state: State<AppState>, url: String) -> Result<Redirect, Status> {
     match state.get_url(&url) {
         Some(target) => Result::Ok(Redirect::to(target)),
-        None => Result::Err(String::from("Not found!"))
+        None => Result::Err(Status::NotFound)
     }
 }
 
 fn main() {
     rocket::ignite()
         .manage(AppState { urls: CHashMap::new() })
-        .mount("/", routes![shorten_url, get_short_url])
+        .mount("/", routes![shorten_url, get_url])
         .launch();
 }
