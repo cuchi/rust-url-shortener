@@ -1,0 +1,14 @@
+[package]
+name = "rust-tinyurl"
+version = "0.1.0"
+authors = ["Paulo Henrique Cuchi <paulo.cuchi@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+base64 = "*"
+chashmap = "*"
+rand = "*"
+rocket = "0.4.0"
+rocket_contrib = "*"
+serde = "*"
+serde_derive = "*"
