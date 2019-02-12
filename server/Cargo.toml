@@ -1,5 +1,5 @@
 [package]
-name = "rust-tinyurl"
+name = "url-shortener-server"
 version = "0.1.0"
 authors = ["Paulo Henrique Cuchi <paulo.cuchi@gmail.com>"]
 edition = "2018"

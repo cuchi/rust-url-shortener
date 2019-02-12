@@ -1,0 +1,9 @@
+[package]
+name = "url-shortener-client"
+version = "0.1.0"
+authors = ["Paulo Henrique Cuchi <paulo.cuchi@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+stdweb = "0.4.2"
+yew = "0.5.0"
