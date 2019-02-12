@@ -3,10 +3,12 @@ extern crate stdweb;
 extern crate yew;
 
 use yew::prelude::*;
-use yew::services::ConsoleService;
+use yew::services::{ConsoleService, FetchService};
+use yew::services::fetch::{Request, Method};
 
 pub struct SubmissionForm {
     console: ConsoleService,
+    fetch: FetchService,
     submitted: bool,
     shortened_url: Option<String>,
     url: String
@@ -24,6 +26,7 @@ impl Component for SubmissionForm {
     fn create(_: Self::Properties, _: ComponentLink<Self>) -> Self {
         SubmissionForm {
             console: ConsoleService::new(),
+            fetch: FetchService::new(),
             submitted: false,
             shortened_url: None,
             url: String::new()
@@ -36,7 +39,13 @@ impl Component for SubmissionForm {
                 self.console.log(&self.url);
                 self.submitted = true;
 
-                // TODO: Find a way to call our API
+                let request = Request::builder()
+                    .uri("/")
+                    .method(Method::POST)
+                    .body(format!("{{ \"url\": \"{}\" }}", self.url));
+                self.fetch.fetch(
+                    request,
+                    |result| self.shortened_url = Some(result));
                 let result = format!("Url to be shortened: {}", self.url);
                 self.shortened_url = Some(result);
                 true
