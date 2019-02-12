@@ -9,7 +9,7 @@ extern crate rocket_contrib;
 use rocket::State;
 use rocket_contrib::json::{Json};
 use chashmap::CHashMap;
-use rand::prelude::*;
+use rand::*;
 use rocket::response::{Redirect};
 use rocket::http::{Status};
 

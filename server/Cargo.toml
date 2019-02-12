@@ -5,10 +5,10 @@ authors = ["Paulo Henrique Cuchi <paulo.cuchi@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-base64 = "*"
-chashmap = "*"
-rand = "*"
+base64 = "0.10.1"
+chashmap = "2.2.0"
+rand = "0.4.6"
 rocket = "0.4.0"
-rocket_contrib = "*"
-serde = "*"
-serde_derive = "*"
+rocket_contrib = "0.4.0"
+serde = "1.0.87"
+serde_derive = "1.0.87"
